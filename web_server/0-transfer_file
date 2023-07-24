@@ -9,9 +9,9 @@ fi
 path_to_file=$1
 ip=$2
 username=$3
-path_to_shh_key_=$4
+path_to_ssh_key_=$4
 #Disabbling strit host keyby checking
-scp -o StrictHostKeyChecking=no -i $4 $1 $host
+scp -o StrictHostKeyChecking=no -i "$path_to_ssh_ke"y "$path_to_fil" "$username@$ip:~/"
 #checking if transfer was sucess
 if [ $? -eq 0 ]
 then 
