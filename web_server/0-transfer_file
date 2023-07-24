@@ -1,9 +1,21 @@
 #!/usr/bin/env bash
 # copy file from client to server
-if [ "$4" == "" ]
+if [ $# -lt 4 ]
 then 
     echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
+    exit 1
+fi 
+#assiningparameter to variables
+path_to_file=$1
+ip=$2
+username=$3
+path_to_shh_key_=$4
+#Disabbling strit host keyby checking
+scp -o StrictHostKeyChecking=no -i $4 $1 $host
+#checking if transfer was sucess
+if [ $? -eq 0 ]
+then 
+	echo "FILE WAS TRANSFERED SUCESSFULL"
 else
-    host="$3@$2:~/"
-    scp -o StrictHostKeyChecking=no -i $4 $1 $host
+	echo "FILE TRANSFER FAILED"
 fi
