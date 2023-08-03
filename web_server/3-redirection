@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Redirecting to another page
+# Rediercting to another page
 
-apt-get update
+apt-get updatei
 apt-get install -y nginx
 
 mkdir /etc/nginx/html
@@ -14,10 +14,8 @@ printf %s "server {
     index index.html index.htm;
 
     location /redirect_me {
-        return 301 http://youtube.com/;
+	return 301 http://youtube.com/;
     }
 }" > /etc/nginx/sites-available/default
 
 service nginx restart
-# Test the redirection using curl
-curl -I http://localhost/redirect_me
