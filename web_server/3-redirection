@@ -1,13 +1,18 @@
 #!/usr/bin/env bash
+
 # Redirecting to another page
 
+# Update package list and install Nginx
 apt-get update
 apt-get install -y nginx
 
+# Create directory and index.html file
 mkdir /etc/nginx/html
-touch /etc/nginx/html/index.html
 echo "Holberton School" > /etc/nginx/html/index.html
-printf %s "server {
+
+# Set up Nginx server block with a redirection rule
+cat << EOF > /etc/nginx/sites-available/default
+server {
     listen 80 default_server;
     listen [::]:80 default_server;
     root /etc/nginx/html;
@@ -16,6 +21,11 @@ printf %s "server {
     location /redirect_me {
         return 301 http://youtube.com/;
     }
-}" > /etc/nginx/sites-available/default
+}
+EOF
 
+# Restart Nginx to apply the changes
 service nginx restart
+
+# Test the redirection using curl
+curl -I http://localhost/redirect_me
