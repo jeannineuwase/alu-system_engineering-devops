@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Rediercting to another page
+# Redirecting to another page
 
-apt-get updatei
+apt-get update
 apt-get install -y nginx
 
 mkdir /etc/nginx/html
@@ -14,7 +14,7 @@ printf %s "server {
     index index.html index.htm;
 
     location /redirect_me {
-	return 301 http://youtube.com/;
+        return 301 http://youtube.com/;
     }
 }" > /etc/nginx/sites-available/default
 
